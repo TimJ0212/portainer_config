@@ -1,6 +1,11 @@
 # - Run 'python3 manage.py createsuperuser' to create a user
 
 version: "3.4"
+
+networks:
+  gitea:
+    external: false
+
 services:
   broker:
     image: docker.io/library/redis:7
@@ -51,3 +56,20 @@ services:
     restart: unless-stopped
     ports:
       - 8080:80
+
+  gitea_server:
+    image: gitea/gitea:1.18.0
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+    restart: always
+    networks:
+      - gitea
+    volumes:
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "222:22"
