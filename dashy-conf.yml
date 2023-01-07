@@ -1,4 +1,4 @@
- appConfig:
+appConfig:
   theme: crayola
   layout: auto
   iconSize: medium

@@ -43,7 +43,7 @@ services:
       USERMAP_UID: 1000
       USERMAP_GID: 100
 
-      PAPERLESS_TIME_ZONE: Germany/Berlin
+      PAPERLESS_TIME_ZONE: Europe/Berlin
       PAPERLESS_OCR_LANGUAGE: deu
 
   dashy:
