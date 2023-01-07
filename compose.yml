@@ -1,0 +1,57 @@
+# - Run 'python3 manage.py createsuperuser' to create a user
+
+version: "3.4"
+services:
+  broker:
+    image: docker.io/library/redis:7
+    restart: unless-stopped
+    volumes:
+      - /mnt/hdd_data/redisdata:/data
+
+  db:
+    image: docker.io/library/postgres:13
+    restart: unless-stopped
+    volumes:
+      - /mnt/hdd_data/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: paperless
+
+  webserver:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    depends_on:
+      - db
+      - broker
+    ports:
+      - 8010:8000
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - /mnt/hdd_data/data:/usr/src/paperless/data
+      - /mnt/hdd_data/media:/usr/src/paperless/media
+      - ./export:/usr/src/paperless/export
+      - ./consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+
+      USERMAP_UID: 1000
+      USERMAP_GID: 100
+
+      PAPERLESS_TIME_ZONE: Germany/Berlin
+      PAPERLESS_OCR_LANGUAGE: deu
+
+  dashy:
+    image: lissy93/dashy:latest
+    restart: unless-stopped
+    volumes:
+      - type: bind
+        source: ~/my-conf.yml
+        target: /app/public/conf.yml
+    ports:
+      - 8080:80

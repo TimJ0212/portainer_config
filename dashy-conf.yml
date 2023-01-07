@@ -1,0 +1,99 @@
+ appConfig:
+  theme: crayola
+  layout: auto
+  iconSize: medium
+  language: de
+  startingView: default
+  defaultOpeningMethod: newtab
+  statusCheck: true
+  statusCheckInterval: 0
+  faviconApi: allesedv
+  routingMode: history
+  enableMultiTasking: false
+  widgetsAlwaysUseProxy: false
+  webSearch:
+    disableWebSearch: false
+    searchEngine: duckduckgo
+    openingMethod: newtab
+    searchBangs: {}
+  enableFontAwesome: true
+  enableMaterialDesignIcons: false
+  hideComponents:
+    hideHeading: false
+    hideNav: false
+    hideSearch: false
+    hideSettings: false
+    hideFooter: false
+  auth:
+    enableGuestAccess: false
+    users: []
+    enableKeycloak: false
+  showSplashScreen: false
+  preventWriteToDisk: false
+  preventLocalSave: false
+  disableConfiguration: false
+  disableConfigurationForNonAdmin: false
+  allowConfigEdit: true
+  enableServiceWorker: false
+  disableContextMenu: false
+  disableUpdateChecks: false
+  disableSmartSort: false
+  enableErrorReporting: false
+pageInfo:
+  title: Dashy
+  description: Welcome to your new dashboard!
+  navLinks: []
+  footerText: ''
+sections:
+  - name: Organisation
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Proxmox
+        description: VMs und CTs
+        icon: https://192.168.178.106:8006/pve2/images/logo-128.png
+        url: 'https://192.168.178.106:8006/#v1:0:18:4:::::::'
+        target: newtab
+        statusCheck: true
+        statusCheckAllowInsecure: true
+        id: 0_1262_proxmox
+      - title: Portainer
+        description: Docker Container
+        icon: https://192.168.178.32:9443/63a301f0574f1a696ce6.png
+        url: https://192.168.178.32:9443
+        target: newtab
+        statusCheck: true
+        statusCheckAllowInsecure: true
+        id: 1_1262_portainer
+  - name: Dateien
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items:
+      - title: Paperless-ngx
+        description: Digitale Dokumente
+        icon: http://192.168.178.32:8010/favicon.ico
+        url: http://192.168.178.32:8010
+        target: newtab
+        statusCheck: true
+        id: 0_698_paperlessngx
+      - title: TrueNAS
+        description: NAS Verwaltung
+        icon: http://192.168.178.48/ui/assets/images/truenas_core_favicon.png
+        url: http://192.168.178.48
+        id: 1_698_truenas
+  - name: Entwicklung
+    displayData:
+      sortBy: default
+      rows: 1
+      cols: 1
+      collapsed: false
+      hideForGuests: false
+    items: []
