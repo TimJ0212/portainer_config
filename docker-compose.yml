@@ -78,12 +78,13 @@ services:
     image: fireflyiii/core:latest
     restart: always
     volumes:
-      - firefly_iii_upload:/var/www/html/storage/upload
+      - /mnt/hdd_data/firefly_iii_upload:/var/www/html/storage/upload
     env_file: .env
     ports:
       - 80:8080
     depends_on:
       - firefly_db
+
   firefly_db:
     image: mariadb    
     hostname: fireflyiiidb
@@ -94,8 +95,7 @@ services:
       - MYSQL_PASSWORD=secret_firefly_password
       - MYSQL_DATABASE=firefly
     volumes:
-      - firefly_iii_db:/var/lib/mysql
-      
+      - /mnt/hdd_data/firefly_iii_db:/var/lib/mysql
+
 volumes:
    firefly_iii_upload:
-   firefly_iii_db:
