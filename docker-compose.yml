@@ -11,13 +11,13 @@ services:
     image: docker.io/library/redis:7
     restart: unless-stopped
     volumes:
-      - /mnt/hdd_data/redisdata:/data
+      - /mnt/docker-vg/redisdata:/data
 
   db:
     image: docker.io/library/postgres:13
     restart: unless-stopped
     volumes:
-      - /mnt/hdd_data/pgdata:/var/lib/postgresql/data
+      - /mnt/docker-vg/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: paperless
       POSTGRES_USER: paperless
@@ -37,8 +37,8 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - /mnt/hdd_data/data:/usr/src/paperless/data
-      - /mnt/hdd_data/media:/usr/src/paperless/media
+      - /mnt/docker-vg/data:/usr/src/paperless/data
+      - /mnt/docker-vg/media:/usr/src/paperless/media
       - ./export:/usr/src/paperless/export
       - ./consume:/usr/src/paperless/consume
     environment:
@@ -66,7 +66,7 @@ services:
     networks:
       - gitea
     volumes:
-      - /mnt/hdd_data/gitea_data:/data
+      - /mnt/docker-vg/gitea_data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
