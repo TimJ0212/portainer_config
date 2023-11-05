@@ -105,8 +105,7 @@ services:
       # MAX_WORKERS: 8
     volumes:
       - ./mealie/data/:/app/data
-
- calibre-web:
+  calibre-web:
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
     environment:
@@ -119,7 +118,6 @@ services:
     ports:
       - 8083:8083
     restart: unless-stopped
-    
 volumes:
   firefly_iii_upload:
   firefly_iii_db:
