@@ -51,11 +51,19 @@ services:
       PAPERLESS_TIME_ZONE: Europe/Berlin
       PAPERLESS_OCR_LANGUAGE: deu
 
-  homer:
-    image: b4bz/homer:latest
-    container_name: homer
+  dashy:
+    image: lissy93/dashy
     ports:
-      - 8080:8080
+      - 4000:80
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'node', '/app/services/healthcheck']
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
       
   firefly:
     image: fireflyiii/core:latest
