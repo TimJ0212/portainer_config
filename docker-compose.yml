@@ -51,11 +51,11 @@ services:
       PAPERLESS_TIME_ZONE: Europe/Berlin
       PAPERLESS_OCR_LANGUAGE: deu
 
-  dashy:
-    image: lissy93/dashy:latest
-    restart: unless-stopped
+  homer:
+    image: b4bz/homer:latest
+    container_name: homer
     ports:
-      - 8080:80
+      - 8080:8080
       
   firefly:
     image: fireflyiii/core:latest
