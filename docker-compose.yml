@@ -58,6 +58,8 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    volumes:
+      - /root/dashy-conf.yml:/app/public/conf.yml
     healthcheck:
       test: ['CMD', 'node', '/app/services/healthcheck']
       interval: 1m30s
