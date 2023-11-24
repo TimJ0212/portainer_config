@@ -54,7 +54,7 @@ services:
   dashy:
     image: lissy93/dashy
     ports:
-      - 4000:80
+      - 8011:80
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -72,7 +72,7 @@ services:
       - firefly_iii_upload:/var/www/html/storage/upload
     env_file: .env
     ports:
-      - 80:8080
+      - 8012:8080
     depends_on:
       - firefly_db
   firefly_db:
@@ -93,7 +93,7 @@ services:
     image: hkotel/mealie:latest
     restart: always
     ports:
-      - 9925:80
+      - 8013:80
     environment:
       PUID: 1000
       PGID: 1000
@@ -124,7 +124,7 @@ services:
       - /root/calibre/config:/config
       - /root/calibre/books:/books
     ports:
-      - 8083:8083
+      - 8014:8083
     restart: unless-stopped
 
   adguardhome:
