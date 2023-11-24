@@ -127,8 +127,6 @@ services:
       - 8083:8083
     restart: unless-stopped
 
-  version: '3.3'
-
   adguardhome:
     image: adguard/adguardhome
     container_name: adguardhome
