@@ -127,28 +127,27 @@ services:
       - 8014:8083
     restart: unless-stopped
 
-  adguardhome:
-    image: adguard/adguardhome
-    container_name: adguardhome
+  revproxy:
+    image: 'jc21/nginx-proxy-manager:latest'
     restart: unless-stopped
-    volumes:
-      - /my/own/workdir:/opt/adguardhome/work
-      - /my/own/confdir:/opt/adguardhome/conf
     ports:
-      - "63:63/tcp"
-      - "63:63/udp"
-      - "67:67/udp"
-      # - "68:68/udp"
-      - "80:80/tcp"
-      - "443:443/tcp"
-      - "443:443/udp"
-      - "3000:3000/tcp"
-      - "853:853/tcp"
-      - "784:784/udp"
-      - "853:853/udp"
-      - "8853:8853/udp"
-      - "5443:5443/tcp"
-      - "5443:5443/udp"
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+
+    # Uncomment the next line if you uncomment anything in the section
+    # environment:
+      # Uncomment this if you want to change the location of
+      # the SQLite DB file within the container
+      # DB_SQLITE_FILE: "/data/database.sqlite"
+
+      # Uncomment this if IPv6 is not enabled on your host
+      # DISABLE_IPV6: 'true'
 
 volumes:
   firefly_iii_upload:
