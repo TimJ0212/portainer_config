@@ -148,7 +148,15 @@ services:
 
       # Uncomment this if IPv6 is not enabled on your host
       # DISABLE_IPV6: 'true'
-
+  
+  stirling-pdf:
+    image: frooodle/s-pdf:latest
+    ports:
+      - '8080:8080'
+    volumes:
+      - /stirling-pdf/trainingData:/usr/share/tesseract-ocr/5/tessdata #Required for extra OCR languages
+      - /stirling-pdf/extraConfigs:/configs
+      
 volumes:
   firefly_iii_upload:
   firefly_iii_db:
