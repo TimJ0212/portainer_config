@@ -1,6 +1,5 @@
 pageInfo:
-  title: Dashy
-  description: Welcome to your new dashboard!
+  title: Dashboard
 appConfig:
   theme: colorful
   layout: auto

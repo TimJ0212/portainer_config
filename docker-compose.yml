@@ -1,5 +1,4 @@
 # - Run 'python3 manage.py createsuperuser' to create a user
-
 version: "3.4"
 
 networks:
@@ -90,10 +89,10 @@ services:
 
   mealie:
     container_name: mealie
-    image: hkotel/mealie:latest
+    image: ghcr.io/mealie-recipes/mealie:v1.7.0
     restart: always
     ports:
-      - "8013:80"
+      - "8013:9000"
     environment:
       PUID: 1000
       PGID: 1000
