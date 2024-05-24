@@ -1,5 +1,8 @@
+pageInfo:
+  title: Dashy
+  description: Welcome to your new dashboard!
 appConfig:
-  theme: crayola
+  theme: colorful
   layout: auto
   iconSize: medium
   language: de
@@ -39,13 +42,8 @@ appConfig:
   disableUpdateChecks: false
   disableSmartSort: false
   enableErrorReporting: false
-pageInfo:
-  title: Dashy
-  description: Welcome to your new dashboard!
-  navLinks: []
-  footerText: ''
 sections:
-  - name: Organisation
+  - name: Infrastruktur
     displayData:
       sortBy: default
       rows: 1
@@ -53,23 +51,40 @@ sections:
       collapsed: false
       hideForGuests: false
     items:
-      - title: Proxmox
-        description: VMs und CTs
+      - &ref_0
+        title: Portainer
+        icon: https://www.portainer.io/hubfs/crane-icon.svg
+        url: https://192.168.178.116:9443/
+        statusCheckAllowInsecure: true
+        id: 0_1412_portainer
+      - &ref_1
+        title: Proxmox
         icon: https://192.168.178.106:8006/pve2/images/logo-128.png
-        url: 'https://192.168.178.106:8006/#v1:0:18:4:::::::'
-        target: newtab
-        statusCheck: true
+        url: https://192.168.178.106:8006
         statusCheckAllowInsecure: true
-        id: 0_1262_proxmox
-      - title: Portainer
-        description: Docker Container
-        icon: https://192.168.178.32:9443/63a301f0574f1a696ce6.png
-        url: https://192.168.178.32:9443
-        target: newtab
-        statusCheck: true
-        statusCheckAllowInsecure: true
-        id: 1_1262_portainer
-  - name: Dateien
+        id: 1_1412_proxmox
+      - &ref_2
+        title: FritzBox
+        icon: http://fritz.box/favicon.ico
+        url: http://fritz.box
+        id: 2_1412_fritzbox
+      - &ref_3
+        title: TrueNas
+        icon: http://192.168.178.41/ui/assets/images/truenas_core_favicon.png
+        url: http://192.168.178.41/
+        id: 3_1412_truenas
+      - &ref_4
+        title: Nginx Proxy Manager
+        icon: http://192.168.178.116:81/images/favicons/favicon.ico
+        url: http://192.168.178.116:81/
+        id: 4_1412_nginxproxymanager
+    filteredItems:
+      - *ref_0
+      - *ref_1
+      - *ref_2
+      - *ref_3
+      - *ref_4
+  - name: Apps
     displayData:
       sortBy: default
       rows: 1
@@ -77,23 +92,41 @@ sections:
       collapsed: false
       hideForGuests: false
     items:
-      - title: Paperless-ngx
-        description: Digitale Dokumente
-        icon: http://192.168.178.32:8010/favicon.ico
-        url: http://192.168.178.32:8010
-        target: newtab
-        statusCheck: true
-        id: 0_698_paperlessngx
-      - title: TrueNAS
-        description: NAS Verwaltung
-        icon: http://192.168.178.48/ui/assets/images/truenas_core_favicon.png
-        url: http://192.168.178.48
-        id: 1_698_truenas
-  - name: Entwicklung
-    displayData:
-      sortBy: default
-      rows: 1
-      cols: 1
-      collapsed: false
-      hideForGuests: false
-    items: []
+      - &ref_5
+        title: Paperless
+        icon: http://192.168.178.116:8010/favicon.ico
+        url: http://192.168.178.116:8010/
+        id: 0_404_paperless
+      - &ref_6
+        title: Firefly III
+        icon: http://192.168.178.116:8012/favicon.ico
+        url: http://192.168.178.116:8012/
+        statusCheckUrl: http://192.168.178.116:8012/login
+        id: 1_404_fireflyiii
+      - &ref_7
+        title: Mealie
+        icon: http://192.168.178.116:8013/img/icons/favicon-32x32.png
+        url: http://192.168.178.116:8013/
+        id: 2_404_mealie
+      - &ref_8
+        title: Calibre
+        icon: http://192.168.178.116:8014/static/favicon.ico
+        url: http://192.168.178.116:8014/
+        id: 3_404_calibre
+      - &ref_9
+        title: Emby
+        icon: http://192.168.178.52:8096/web/favicon.ico
+        url: http://192.168.178.52:8096/
+        id: 4_404_emby
+      - &ref_10
+        title: Stirling PDF
+        icon: http://192.168.178.116:8080/favicon.svg
+        url: http://192.168.178.116:8080/?lang=de_DE
+        id: 5_404_stirlingpdf
+    filteredItems:
+      - *ref_5
+      - *ref_6
+      - *ref_7
+      - *ref_8
+      - *ref_9
+      - *ref_10

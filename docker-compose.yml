@@ -50,9 +50,9 @@ services:
       PAPERLESS_OCR_LANGUAGE: deu
 
   dashy:
-    image: lissy93/dashy
+    image: lissy93/dashy:latest
     ports:
-      - 8011:80
+      - "8011:80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -72,7 +72,7 @@ services:
       - firefly_iii_upload:/var/www/html/storage/upload
     env_file: .env
     ports:
-      - 8012:8080
+      - "8012:8080"
     depends_on:
       - firefly_db
   firefly_db:
@@ -93,26 +93,14 @@ services:
     image: hkotel/mealie:latest
     restart: always
     ports:
-      - 8013:80
+      - "8013:80"
     environment:
       PUID: 1000
       PGID: 1000
       TZ: Europe/Berlin
-
-      # Default Recipe Settings
-      RECIPE_PUBLIC: 'true'
-      RECIPE_SHOW_NUTRITION: 'true'
-      RECIPE_SHOW_ASSETS: 'true'
-      RECIPE_LANDSCAPE_VIEW: 'true'
-      RECIPE_DISABLE_COMMENTS: 'false'
-      RECIPE_DISABLE_AMOUNT: 'false'
-
-      # Gunicorn
-      # WEB_CONCURRENCY: 2
-      # WORKERS_PER_CORE: 0.5
-      # MAX_WORKERS: 8
     volumes:
       - ./mealie/data/:/app/data
+  
   calibre-web:
     image: lscr.io/linuxserver/calibre-web:latest
     container_name: calibre-web
@@ -126,36 +114,6 @@ services:
     ports:
       - 8014:8083
     restart: unless-stopped
-
-  revproxy:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80' # Public HTTP Port
-      - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port
-      # Add any other Stream port you want to expose
-      # - '21:21' # FTP
-    volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt
-
-    # Uncomment the next line if you uncomment anything in the section
-    # environment:
-      # Uncomment this if you want to change the location of
-      # the SQLite DB file within the container
-      # DB_SQLITE_FILE: "/data/database.sqlite"
-
-      # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
-  
-  stirling-pdf:
-    image: frooodle/s-pdf:latest
-    ports:
-      - '8080:8080'
-    volumes:
-      - /stirling-pdf/trainingData:/usr/share/tesseract-ocr/5/tessdata #Required for extra OCR languages
-      - /stirling-pdf/extraConfigs:/configs
       
 volumes:
   firefly_iii_upload:
