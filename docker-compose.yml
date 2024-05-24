@@ -52,7 +52,7 @@ services:
   dashy:
     image: lissy93/dashy:latest
     ports:
-      - "8011:80"
+      - "8011:8080"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
