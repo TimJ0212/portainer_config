@@ -89,7 +89,7 @@ services:
 
   mealie:
     container_name: mealie
-    image: ghcr.io/mealie-recipes/mealie:v1.7.0
+    image: ghcr.io/mealie-recipes/mealie:latest
     restart: always
     ports:
       - "8013:9000"
